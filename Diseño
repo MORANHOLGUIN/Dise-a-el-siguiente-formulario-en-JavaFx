@@ -1,0 +1,83 @@
+package application;
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("All Controls");
+
+        // Crear la GridPane para los controles
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(10));
+
+        // Agregar los controles
+        gridPane.add(new Label("Button:"), 0, 0);
+        gridPane.add(new Button("Button"), 1, 0);
+
+        gridPane.add(new Label("CheckBox:"), 0, 1);
+        gridPane.add(new CheckBox("CheckBox"), 1, 1);
+
+        gridPane.add(new Label("Hyperlink:"), 0, 2);
+        gridPane.add(new Hyperlink("Hyperlink"), 1, 2);
+
+        gridPane.add(new Label("ToggleButton:"), 0, 3);
+        gridPane.add(new ToggleButton("ToggleButton"), 1, 3);
+
+        gridPane.add(new Label("RadioButton:"), 0, 4);
+        gridPane.add(new RadioButton("RadioButton"), 1, 4);
+
+        gridPane.add(new Label("Label:"), 0, 5);
+        gridPane.add(new Label("Label"), 1, 5);
+
+        gridPane.add(new Label("TextField:"), 0, 6);
+        TextField textField = new TextField();
+        textField.setPromptText("some text...");
+        gridPane.add(textField, 1, 6);
+
+        gridPane.add(new Label("PasswordField:"), 0, 7);
+        gridPane.add(new PasswordField(), 1, 7);
+
+        gridPane.add(new Label("TextArea:"), 0, 8);
+        TextArea textArea = new TextArea("This is very long text that will wrap to several lines.");
+        textArea.setWrapText(true);
+        gridPane.add(textArea, 1, 8);
+
+        // Crear HBox para ProgressIndicator
+        HBox progressIndicatorBox = new HBox(10);
+        progressIndicatorBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        progressIndicatorBox.getChildren().addAll(new Label("ProgressIndicator:"), new ProgressIndicator(0.49));
+
+        // Crear HBox para ProgressBar
+        HBox progressBarBox = new HBox(10);
+        progressBarBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        progressBarBox.getChildren().addAll(new Label("ProgressBar:"), new ProgressBar(0.49));
+
+        // Crear HBox para Slider
+        HBox sliderBox = new HBox(10);
+        sliderBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        sliderBox.getChildren().addAll(new Label("Slider:"), new Slider());
+
+        // Crear VBox para contener todo
+        VBox vBox = new VBox(10);
+        vBox.setPadding(new Insets(10));
+        vBox.getChildren().addAll(gridPane, progressIndicatorBox, progressBarBox, sliderBox);
+
+        // Crear la escena y añadirla al stage
+        Scene scene = new Scene(vBox, 400, 500);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
